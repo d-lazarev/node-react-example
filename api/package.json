@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --watch routes --watch public ./bin/www",
+    "start:debug": "node --inspect ./bin/www",
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/sinon": "^7.5.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jest": "^24.9.0",
+    "morgan": "~1.9.1",
+    "sinon": "^7.5.0"
+  }
+}

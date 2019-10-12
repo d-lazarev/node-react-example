@@ -1,0 +1,105 @@
+.App {
+  text-align: left;
+}
+
+.App h1 {
+  text-align: center;
+  width: 100%;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: white;
+  min-height: 100vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #464646;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.route-search, .selected-route {
+  width: 85%;
+  font-size: 0.5em;
+  margin: 0 15%;
+  position: relative;
+}
+
+.selected-route p {
+  float: left;
+  width: 40%;
+  margin: 5px 0 20px 0;
+  padding: 0 0 10px 25px;
+  font-size: 2em;
+}
+
+.selected-route button {
+  float: right;
+  width: 20%;
+  margin: 0 20px 5px 0;
+  padding: 8px 0;
+  font-size: 1.2em;
+}
+
+.selected-route button:hover {
+  background-color: #a8a8a8;
+}
+
+.selected-route::after {
+  clear: both;
+}
+
+.route-search input {
+  width: 85%;
+  font-size: 1.5em;
+  border-radius: 20px;
+  border-color: #5a5a5a;
+  padding-left: 1em;
+}
+
+.route-search-results, .route-stops ul {
+  position: relative;
+  margin: 0.5em 1em;
+  padding: .5em 1em;
+  height: 15em;
+  overflow: scroll;
+  width: 80%;
+  border: 1px solid #a8a8a8;
+}
+
+.route-stops ul {
+  width: 90%
+}
+
+.route-search-results ul {
+  margin: 0;
+  padding: 0 4px;
+}
+
+li.route-button, .route-stops li  {
+  cursor: pointer;
+  margin: 0;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.even {
+  background-color: white;
+}
+
+.odd {
+  background-color: #f1f1f1; 
+}
+
+.route-button:hover, .route-stops li:hover {
+  background-color: #cccccc;
+}
