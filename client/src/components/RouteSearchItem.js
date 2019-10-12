@@ -15,7 +15,9 @@ class RouteSearchItem extends Component {
       const theClass= `route-button ${this.props.displayClass}`;
 
     return (
+      <React.Fragment>
         <li className={theClass} onClick={this.selectRoute}>{this.props.route.title}</li>
+      </React.Fragment>
     );
   }
 }

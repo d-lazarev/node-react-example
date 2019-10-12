@@ -13,8 +13,8 @@
 
 .App-header {
   background-color: white;
-  min-height: 100vh;
   width: 80%;
+  margin: 0 10%;
   display: block;
   align-items: left;
   justify-content: center;
@@ -27,9 +27,9 @@
 }
 
 .route-search, .selected-route {
-  width: 85%;
+  width: 80%;
   font-size: 0.5em;
-  margin: 0 15%;
+  margin: 0 10%;
   position: relative;
 }
 
@@ -74,6 +74,16 @@
   width: 80%;
   border: 1px solid #a8a8a8;
 }
+
+/*.route-search-results {
+  position: absolute;
+  top: 30px;
+  right: 60px;
+  margin: 0 10px;
+  padding: 0;
+  width: 45%;
+  z-index: 100;
+}*/
 
 .route-stops ul {
   width: 90%

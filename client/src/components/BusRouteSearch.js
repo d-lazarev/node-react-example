@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RouteSearchItem from "./RouteSearchItem";
+import FilteredSearch from "./FilteredSearch";
 
 class BusRouteSearch extends Component {
   constructor(props) {
@@ -14,28 +14,6 @@ class BusRouteSearch extends Component {
   }
 
   render() {
-    let display = "";
-    const search = this.state.search;
-    let displayClass = "odd";
-
-    const filteredSearch = this.props.routes
-      .filter(r => r.title.toLowerCase().indexOf(search.toLowerCase()) > -1)
-      .map(rObj => {
-        const tag = (
-          <RouteSearchItem
-            key={rObj.tag.toString()}
-            route={rObj}
-            selectRoute={this.props.selectRoute}
-            displayClass={displayClass}
-          />
-        );
-
-        displayClass = displayClass === "odd" ? "even" : "odd";
-        return tag;
-      });
-
-    display = filteredSearch;
-
     return (
       <div className="route-search">
         <input
@@ -45,9 +23,7 @@ class BusRouteSearch extends Component {
           value={this.state.search}
           onChange={this.updateSearch}
         />
-        <div className="route-search-results">
-          <ul>{display}</ul>
-        </div>
+       <FilteredSearch routes={this.props.routes} search={this.state.search} selectRoute={this.props.selectRoute}/>
       </div>
     );
   }
