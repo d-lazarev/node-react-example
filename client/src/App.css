@@ -159,3 +159,25 @@ li.route-button,
 .route-stops li:hover {
   background-color: #cccccc;
 }
+
+.modal-wrapper {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.151);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.modal-wrapper .route-search-results {
+  position: relative;
+  margin: 0 auto;
+  top: 80px;
+  vertical-align: center;
+  z-index: 300;
+  box-shadow: none;
+  height: 30em;
+}

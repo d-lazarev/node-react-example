@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FilteredSearch from "./FilteredSearch";
 import SelectedRoute from "./SelectedRoute";
+import ModalRouteList from "./ModalRouteList";
 
 class BusRouteSearch extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class BusRouteSearch extends Component {
 
     this.updateSearch = this.updateSearch.bind(this);
     this.selectRoute = this.selectRoute.bind(this);
+    this.resetSearch = this.resetSearch.bind(this);
   }
 
   updateSearch(event) {
@@ -16,21 +18,36 @@ class BusRouteSearch extends Component {
   }
 
   selectRoute(routeObj) {
-    this.setState({search: ''});
+    this.setState({ search: "" });
     this.props.selectRoute(routeObj);
+  }
+
+  resetSearch() {
+    this.setState({ search: "" });
   }
 
   render() {
     let display = "";
 
     if (this.state.search.length > 0) {
-      display = (
-        <FilteredSearch
-          routes={this.props.routes}
-          search={this.state.search}
-          selectRoute={this.selectRoute}
-        />
-      );
+      if (this.state.search[0] === "#") {
+        display = (
+          <ModalRouteList
+            routes={this.props.routes}
+            search=""
+            selectRoute={this.selectRoute}
+            resetSearch={this.resetSearch}
+          />
+        );
+      } else {
+        display = (
+          <FilteredSearch
+            routes={this.props.routes}
+            search={this.state.search}
+            selectRoute={this.selectRoute}
+          />
+        );
+      }
     }
 
     return (
@@ -40,7 +57,7 @@ class BusRouteSearch extends Component {
           <input
             id="BusRouteSearch"
             type="text"
-            placeholder="Enter a Route Name or Number"
+            placeholder="Enter a Route or # for list"
             value={this.state.search}
             onChange={this.updateSearch}
           />

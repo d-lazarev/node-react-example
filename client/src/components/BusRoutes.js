@@ -32,6 +32,13 @@ class BusRoutes extends Component {
   }
 
    render() {
+     let display = "";
+
+     if( this.state.selectedRoute.tag ) {
+display = ( 
+<SelectStop stops={this.state.stops} route={this.state.selectedRoute} />
+  );
+     }
     return (
       <div>
         <BusRouteSearch
@@ -40,7 +47,7 @@ class BusRoutes extends Component {
           selectRoute={this.selectRoute}
         />
 
-        <SelectStop stops={this.state.stops} route={this.state.selectedRoute} />
+        {display}
       </div>
     );
   }
