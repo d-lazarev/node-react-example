@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FilteredSearch from "./FilteredSearch";
+import SelectedRoute from "./SelectedRoute";
 
 class BusRouteSearch extends Component {
   constructor(props) {
@@ -7,23 +8,44 @@ class BusRouteSearch extends Component {
     this.state = { search: "" };
 
     this.updateSearch = this.updateSearch.bind(this);
+    this.selectRoute = this.selectRoute.bind(this);
   }
 
   updateSearch(event) {
     this.setState({ search: event.target.value });
   }
 
+  selectRoute(routeObj) {
+    this.setState({search: ''});
+    this.props.selectRoute(routeObj);
+  }
+
   render() {
-    return (
-      <div className="route-search">
-        <input
-          id="BusRouteSearch"
-          type="text"
-          placeholder="Enter a Route Name or Number"
-          value={this.state.search}
-          onChange={this.updateSearch}
+    let display = "";
+
+    if (this.state.search.length > 0) {
+      display = (
+        <FilteredSearch
+          routes={this.props.routes}
+          search={this.state.search}
+          selectRoute={this.selectRoute}
         />
-       <FilteredSearch routes={this.props.routes} search={this.state.search} selectRoute={this.props.selectRoute}/>
+      );
+    }
+
+    return (
+      <div id="RouteSearch">
+        <SelectedRoute selectedRoute={this.props.selectedRoute} />
+        <div className="route-search">
+          <input
+            id="BusRouteSearch"
+            type="text"
+            placeholder="Enter a Route Name or Number"
+            value={this.state.search}
+            onChange={this.updateSearch}
+          />
+          {display}
+        </div>
       </div>
     );
   }

@@ -1,41 +1,48 @@
 import React, { Component } from "react";
 import BusRouteSearch from "./BusRouteSearch";
-import BusRouteDisplay from "./BusRouteDisplay";
+import WebService from "../service/WebService";
+import SelectStop from "./SelectStop";
 
 class BusRoutes extends Component {
   constructor(props) {
     super(props);
-    this.state = { routes: [], selectedRoute: {} };
+    this.state = { routes: [], selectedRoute: {}, stops: [] };
 
     this.selectRoute = this.selectRoute.bind(this);
-    this.resetRoute = this.resetRoute.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/schedule/getRoutes")
-      .then(res => res.json())
-      .then(res => this.setState({ routes: res.data }));
+    WebService.getRoutes().then(res => this.setState({ routes: res.data }));
   }
 
   selectRoute(routeObj) {
-    this.setState({ routes: this.state.routes, selectedRoute: routeObj });
+    this.setState({
+      routes: this.state.routes,
+      stops: this.state.stops,
+      selectedRoute: routeObj
+    });
+
+    WebService.getStops(routeObj.tag).then(res =>
+      this.setState({
+        routes: this.state.routes,
+        stops: res.data,
+        selectedRoute: this.state.selectedRoute
+      })
+    );
   }
 
-  resetRoute() {
-    this.setState({ routes: this.state.routes, selectedRoute: {}});  
-  }
+   render() {
+    return (
+      <div>
+        <BusRouteSearch
+          routes={this.state.routes}
+          selectedRoute={this.state.selectedRoute}
+          selectRoute={this.selectRoute}
+        />
 
-  render() {
-    const selectedRoute = this.state.selectedRoute;
-    let display;
-
-    if (selectedRoute.tag) {
-      display = <BusRouteDisplay route={this.state.selectedRoute} resetRoute={this.resetRoute}/>;
-    } else {
-      display = <BusRouteSearch routes={this.state.routes} selectRoute={this.selectRoute} />;
-    }
-
-    return display;
+        <SelectStop stops={this.state.stops} route={this.state.selectedRoute} />
+      </div>
+    );
   }
 }
 

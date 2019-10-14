@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StopPrediction from "./StopPrediction";
+import WebService from "../service/WebService";
 
 class SelectStop extends Component {
   constructor(props) {
@@ -9,29 +10,20 @@ class SelectStop extends Component {
     this.selectOurStop = this.selectOurStop.bind(this);
   }
 
-  componentDidMount() {
-    fetch(`http://localhost:3001/schedule/getStops/${this.props.route.tag}`)
-      .then(res => res.json())
-      .then(res => this.setState({ stops: res.data }));
-  }
-
   selectOurStop(val, event) {
-    console.log(`Stop: ${val}`);
-    fetch(
-      `http://localhost:3001/schedule/getPredictions/${this.props.route.tag}/${val}`
-    )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          stops: this.state.stops,
-          predictions: res.data.predictions
-        })
-      );
+    console.log(`Route: ${this.props.route.tag} - Stop: ${val}`);
+
+    WebService.getPredictions(this.props.route.tag, val).then(res =>
+      this.setState({
+        stops: this.state.stops,
+        predictions: res.data.predictions
+      })
+    );
   }
 
   render() {
     const uniqueStopList = [];
-    this.state.stops.forEach(stop => {
+    this.props.stops.forEach(stop => {
       if (!uniqueStopList.find(s => s.tag === stop.tag)) {
         uniqueStopList.push(stop);
       }
@@ -61,8 +53,10 @@ class SelectStop extends Component {
 
     return (
       <div className="route-stops">
-        <ul id="SelectStop">{menuItems}</ul>
-        {display}
+        <div className="select-stop">
+          <ul id="SelectStop">{menuItems}</ul>
+        </div>
+        <div className="stop-predictions">{display}</div>
       </div>
     );
   }

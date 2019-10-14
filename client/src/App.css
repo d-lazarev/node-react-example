@@ -18,7 +18,7 @@
   display: block;
   align-items: left;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(4px + 2vmin);
   color: #464646;
 }
 
@@ -26,19 +26,38 @@
   color: #09d3ac;
 }
 
-.route-search, .selected-route {
-  width: 80%;
+.route-search,
+.selected-route {
   font-size: 0.5em;
-  margin: 0 10%;
   position: relative;
+}
+
+.selected-route {
+  float: left;
+  width: 40%;
+}
+
+.route-search {
+  float: right;
+  width: 40%;
+  margin: 0;
+}
+
+#RouteSearch {
+  height: 2em;
+  margin: 20px 0;
+}
+
+#RouteSearch::after {
+  clear: both;
 }
 
 .selected-route p {
   float: left;
-  width: 40%;
+  width: 100%;
   margin: 5px 0 20px 0;
   padding: 0 0 10px 25px;
-  font-size: 2em;
+  font-size: 1.6em;
 }
 
 .selected-route button {
@@ -58,35 +77,61 @@
 }
 
 .route-search input {
-  width: 85%;
+  width: 100%;
   font-size: 1.5em;
   border-radius: 20px;
   border-color: #5a5a5a;
   padding-left: 1em;
 }
 
-.route-search-results, .route-stops ul {
+.route-stops {
+  width: 100%;
+  height: 16em;
+  margin: em 0;
+}
+
+.select-stop, .stop-predictions {
+  width: 45%;
+}
+
+.select-stop {
+  float: left;
+}
+
+.stop-predictions {
+  float: right;
+}
+
+.route-stops ul {
   position: relative;
+  font-size: .65em;
   margin: 0.5em 1em;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   height: 15em;
   overflow: scroll;
-  width: 80%;
+  width: 100%;
   border: 1px solid #a8a8a8;
 }
 
-/*.route-search-results {
+.route-stops::after {
+  clear: both;
+}
+
+.route-search-results {
+  height: 10em;
+  overflow: scroll;
   position: absolute;
   top: 30px;
-  right: 60px;
-  margin: 0 10px;
+  right: 0;
+  margin: 0;
   padding: 0;
-  width: 45%;
+  width: 80%;
   z-index: 100;
-}*/
-
-.route-stops ul {
-  width: 90%
+  border: 2px solid #a8a8a8;
+  box-shadow: darkgray 5px 5px 8px;
+  opacity: 0.8;
+  background-color: white;
+  font-size: 1.5em;
 }
 
 .route-search-results ul {
@@ -94,7 +139,8 @@
   padding: 0 4px;
 }
 
-li.route-button, .route-stops li  {
+li.route-button,
+.route-stops li {
   cursor: pointer;
   margin: 0;
   padding: 10px 0;
@@ -106,9 +152,10 @@ li.route-button, .route-stops li  {
 }
 
 .odd {
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
 }
 
-.route-button:hover, .route-stops li:hover {
+.route-button:hover,
+.route-stops li:hover {
   background-color: #cccccc;
 }
