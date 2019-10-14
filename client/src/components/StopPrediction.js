@@ -19,7 +19,7 @@ class StopPrediction extends Component {
 
         return render;
       });
-      display = <ul>{predictionList}</ul>;
+      display = <ul><li className="even"><b>{this.props.selectedStop.title}</b></li>{predictionList}</ul>;
     }
 
     return <div>{display}</div>;

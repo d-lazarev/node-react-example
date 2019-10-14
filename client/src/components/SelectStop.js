@@ -5,18 +5,19 @@ import WebService from "../service/WebService";
 class SelectStop extends Component {
   constructor(props) {
     super(props);
-    this.state = { stops: [], predictions: [] };
+    this.state = { stops: [], predictions: [], selectedStop: {} };
 
     this.selectOurStop = this.selectOurStop.bind(this);
   }
 
   selectOurStop(val, event) {
-    console.log(`Route: ${this.props.route.tag} - Stop: ${val}`);
+    console.log(`Route: ${this.props.route.tag} - Stop: ${val.tag}`);
 
-    WebService.getPredictions(this.props.route.tag, val).then(res =>
+    WebService.getPredictions(this.props.route.tag, val.tag).then(res =>
       this.setState({
         stops: this.state.stops,
-        predictions: res.data.predictions
+        predictions: res.data.predictions,
+        selectedStop: val
       })
     );
   }
@@ -35,7 +36,7 @@ class SelectStop extends Component {
         <li
           key={stop.tag.toString() + new Date().getTime().toString()}
           value={stop.tag}
-          onClick={e => this.selectOurStop(stop.tag, e)}
+          onClick={e => this.selectOurStop(stop, e)}
           className={tagClass}
         >
           {stop.title}
@@ -48,7 +49,7 @@ class SelectStop extends Component {
     let display = "";
 
     if (this.state.predictions.length > 0) {
-      display = <StopPrediction predictions={this.state.predictions} />;
+      display = <StopPrediction predictions={this.state.predictions} selectedStop={this.state.selectedStop}/>;
     }
 
     return (

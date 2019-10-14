@@ -86,7 +86,7 @@
 
 .route-stops {
   width: 100%;
-  height: 16em;
+  height: 20em;
   margin: em 0;
 }
 
@@ -107,7 +107,7 @@
   font-size: .65em;
   margin: 0.5em 1em;
   padding: 0.5em 1em;
-  height: 15em;
+  height: 20em;
   overflow: scroll;
   width: 100%;
   border: 1px solid #a8a8a8;
